@@ -40,5 +40,65 @@ body {
 .main {
   height: 90%;
   border: 1px solid black;
+}
+
+.content {
+  height: 85%;
   display: flex;
+}
+
+.left-container {
+  display: flex;
+  flex-flow: column wrap;
+  width: 50%;
+}
+
+.numbers {
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-end;
+  height: 80%;
+}
+
+.numbers * {
+  flex: auto;
+  height: 33.33%;
+}
+
+.misc {
+  display: flex;
+  width: 100%;
+  height: 20%;
+}
+
+.misc * {
+  flex: auto;
+  height: 100%;
+}
+
+.operators {
+  width: 50%;
+}
+
+button {
+  width: 50px;
+  height: 50px;
+  font-size: 22px;
+}
+
+.footer {
+  display: flex;
+  height: 15%;
+  border-top: 1px solid black;
+}
+
+.footer * {
+  flex: auto;
+  height: 100%;
+  border: 0;
+}
+
+.clear {
+  border-right: 1px solid gray;
 }
