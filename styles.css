@@ -24,6 +24,8 @@ button {
   width: 50px;
   height: 50px;
   font-size: 22px;
+  border: 2px solid #3b3b3b;
+  border-radius: 10px;
 }
 
 .calculator {
@@ -34,12 +36,16 @@ button {
   height: 500px;
   border: 1px solid black;
   padding: 12px;
+  background-color: #c4c4c4;
+  border-radius: 10px;
 }
 
 .display {
-  border: 1px solid black;
+  border: 3px solid #3b3b3b;
   padding: 6px;
   font-size: 24px;
+  background-color: white;
+  border-radius: 10px;
 }
 
 .main {
@@ -56,6 +62,8 @@ button {
   display: flex;
   flex-flow: column wrap;
   width: 50%;
+  border-right: 1px solid black;
+  padding: 8px;
 }
 
 .numbers {
@@ -64,17 +72,19 @@ button {
   flex-flow: row wrap;
   justify-content: flex-end;
   height: 80%;
+  gap: 8px;
 }
 
 .numbers * {
   flex: auto;
-  height: calc(100% / 3);
+  height: calc(100% / 4);
 }
 
 .misc {
   display: flex;
   width: 100%;
   height: 20%;
+  gap: 8px;
 }
 
 .misc * {
@@ -86,6 +96,9 @@ button {
   width: 50%;
   display: flex;
   flex-flow: row wrap;
+  gap: 8px;
+  padding: 8px;
+  align-items: center;
 }
 
 .operators {
@@ -93,6 +106,7 @@ button {
   flex-flow: column nowrap;
   width: 100%;
   height: 80%;
+  gap: 8px;
 }
 
 .operators * {
@@ -103,7 +117,7 @@ button {
 .equal {
   display: flex;
   width: 100%;
-  height: 20%;
+  flex: 2;
 }
 
 .equal * {
@@ -111,18 +125,20 @@ button {
   flex: auto;
 }
 
+.equal *,
+.operators * {
+  background-color: #8a9a5b;
+}
+
 .footer {
   display: flex;
   height: 15%;
   border-top: 1px solid black;
+  padding: 8px;
+  gap: 8px;
 }
 
 .footer * {
   flex: auto;
   height: 100%;
-  border: 0;
-}
-
-.clear {
-  border-right: 1px solid gray;
 }
