@@ -20,12 +20,14 @@ body {
     "Helvetica Neue",
     sans-serif;
 }
+
 button {
   width: 50px;
   height: 50px;
   font-size: 22px;
-  border: 2px solid #3b3b3b;
+  border: 0;
   border-radius: 10px;
+  font-weight: bold;
 }
 
 .calculator {
@@ -36,7 +38,7 @@ button {
   height: 500px;
   border: 1px solid black;
   padding: 12px;
-  background-color: #c4c4c4;
+  background-color: #181818;
   border-radius: 10px;
 }
 
@@ -78,6 +80,8 @@ button {
 .numbers * {
   flex: auto;
   height: calc(100% / 4);
+  background-color: gray;
+  color: white;
 }
 
 .misc {
@@ -90,6 +94,8 @@ button {
 .misc * {
   flex: auto;
   height: 100%;
+  background-color: gray;
+  color: white;
 }
 
 .right-container {
@@ -112,6 +118,9 @@ button {
 .operators * {
   flex: auto;
   width: 100%;
+  background-color: #2e2eff;
+  color: white;
+
 }
 
 .equal {
@@ -123,11 +132,14 @@ button {
 .equal * {
   height: 100%;
   flex: auto;
+  border: 0;
+  background-color: #ff5d00;
+  color: white;
 }
 
-.equal *,
-.operators * {
-  background-color: #8a9a5b;
+.equal *, .operators *
+{
+  font-size: 32px;
 }
 
 .footer {
@@ -141,4 +153,10 @@ button {
 .footer * {
   flex: auto;
   height: 100%;
+  background-color: #ff5d00;
+  color: white;
+}
+
+.hover {
+  background-color: bisque;
 }
