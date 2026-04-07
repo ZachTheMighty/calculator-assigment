@@ -33,3 +33,20 @@ function multiply(a, b) {
 function divide(a, b) {
   return Number((a / b).toFixed(2));
 }
+
+function operate(a, b, operator) {
+  switch (operator) {
+    case "+":
+      return add(a, b);
+      break;
+    case "-":
+      return substract(a, b);
+      break;
+    case "×":
+      return multiply(a, b);
+      break;
+    case "/":
+      return divide(a, b);
+  }
+  return "Invalid operator";
+}
