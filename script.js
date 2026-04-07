@@ -1,5 +1,7 @@
 let numbersContainer = document.querySelector(".numbers");
 
+let operators = document.querySelectorAll(".operator");
+
 createNumbers();
 
 let buttons = document.querySelectorAll("button");
@@ -38,15 +40,18 @@ function operate(a, b, operator) {
   switch (operator) {
     case "+":
       return add(a, b);
-      break;
     case "-":
       return substract(a, b);
-      break;
     case "×":
       return multiply(a, b);
-      break;
     case "/":
       return divide(a, b);
   }
   return "Invalid operator";
+}
+
+function updateOperator() {
+  operators.forEach((operator) =>
+    operator.addEventListener("click", () => operator.textContent),
+  );
 }
