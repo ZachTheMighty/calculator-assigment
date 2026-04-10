@@ -1,10 +1,18 @@
 let numbersContainer = document.querySelector(".numbers");
-
-let operators = document.querySelectorAll(".operator");
-
 createNumbers();
 
+let operators = document.querySelectorAll(".operator");
+let numbers = document.querySelectorAll(".number");
+let display = document.querySelector(".display");
 let buttons = document.querySelectorAll("button");
+let equal = document.querySelector(".equal *");
+let a = 0,
+  b = 0,
+  totalDigitForA = "",
+  totalDigitForB = "",
+  totalDisplayForA = "",
+  totalDisplayForB = "",
+  operator;
 
 buttons.forEach((button) => {
   button.addEventListener("mouseenter", () => button.classList.toggle("hover"));
@@ -51,7 +59,44 @@ function operate(a, b, operator) {
 }
 
 function updateOperator() {
-  operators.forEach((operator) =>
-    operator.addEventListener("click", () => operator.textContent),
+  operators.forEach((op) =>
+    op.addEventListener("click", () => {
+      operator = op.textContent;
+    }),
   );
 }
+
+function updateLiterals() {
+  numbers.forEach((number) =>
+    number.addEventListener("click", () => {
+      if (display.textContent === "0") display.textContent = "";
+
+      if (operator === undefined) {
+        totalDigitForA += number.textContent;
+        totalDisplayForA += number.textContent;
+        display.textContent = totalDisplayForA;
+      }
+
+      if (operator !== undefined) {
+        totalDigitForB += number.textContent;
+        totalDisplayForB += number.textContent;
+        display.textContent = totalDisplayForB;
+      }
+      a = +totalDigitForA;
+      b = +totalDigitForB;
+    }),
+  );
+}
+
+function displayResult() {
+  updateOperator();
+  updateLiterals();
+  equal.addEventListener("click", () => {
+    display.textContent = operate(a, b, operator);
+    console.log(a);
+    console.log(operator);
+    console.log(b);
+  });
+}
+
+displayResult();
