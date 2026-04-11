@@ -6,13 +6,18 @@ let numbers = document.querySelectorAll(".number");
 let display = document.querySelector(".display");
 let buttons = document.querySelectorAll("button");
 let equal = document.querySelector(".equal *");
-let a = 0,
-  b = 0,
+let clear = document.querySelector(".clear");
+let a = null,
+  b = null,
   totalDigitForA = "",
   totalDigitForB = "",
   totalDisplayForA = "",
   totalDisplayForB = "",
-  operator;
+  numberOfTerms = 0,
+  operator = null,
+  tempOperator = null,
+  operatorsPressed = [],
+  i = 0;
 
 buttons.forEach((button) => {
   button.addEventListener("mouseenter", () => button.classList.toggle("hover"));
@@ -37,10 +42,11 @@ function substract(a, b) {
 }
 
 function multiply(a, b) {
-  return a * b;
+  return Number((a * b).toFixed(2));
 }
 
 function divide(a, b) {
+  if (b === 0) return "Don't divide by 0 plz";
   return Number((a / b).toFixed(2));
 }
 
@@ -61,7 +67,13 @@ function operate(a, b, operator) {
 function updateOperator() {
   operators.forEach((op) =>
     op.addEventListener("click", () => {
-      operator = op.textContent;
+      operatorsPressed.push(op.textContent);
+      numberOfTerms++;
+
+      if (numberOfTerms > 1 && a !== null && b !== null && b !== 0) {
+        display.textContent = operate(a, b, operatorsPressed[i]);
+        a = operate(a, b, operatorsPressed[i++]);
+      }
     }),
   );
 }
@@ -71,19 +83,26 @@ function updateLiterals() {
     number.addEventListener("click", () => {
       if (display.textContent === "0") display.textContent = "";
 
-      if (operator === undefined) {
+      if (numberOfTerms > 1) {
+        totalDisplayForB = "";
+        totalDigitForB = "";
+      }
+      if (operatorsPressed.length === 0) {
         totalDigitForA += number.textContent;
         totalDisplayForA += number.textContent;
         display.textContent = totalDisplayForA;
       }
 
-      if (operator !== undefined) {
+      if (operatorsPressed.length !== 0) {
         totalDigitForB += number.textContent;
         totalDisplayForB += number.textContent;
         display.textContent = totalDisplayForB;
       }
-      a = +totalDigitForA;
+      if (numberOfTerms === 0) a = +totalDigitForA;
       b = +totalDigitForB;
+      console.log(a);
+      console.log(operatorsPressed[i]);
+      console.log(b);
     }),
   );
 }
@@ -91,11 +110,14 @@ function updateLiterals() {
 function displayResult() {
   updateOperator();
   updateLiterals();
+
   equal.addEventListener("click", () => {
-    display.textContent = operate(a, b, operator);
-    console.log(a);
-    console.log(operator);
-    console.log(b);
+    if (operatorsPressed.length === 0) return;
+    display.textContent = operate(
+      a,
+      b,
+      operatorsPressed[operatorsPressed.length - 1],
+    );
   });
 }
 
