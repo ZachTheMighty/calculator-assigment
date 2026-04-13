@@ -14,8 +14,6 @@ let a = null,
   totalDisplayForA = "",
   totalDisplayForB = "",
   numberOfTerms = 0,
-  operator = null,
-  tempOperator = null,
   operatorsPressed = [],
   i = 0;
 
@@ -103,6 +101,18 @@ function updateLiterals() {
   );
 }
 
+function clearCalculator() {
+  ((a = null),
+    (b = null),
+    (totalDigitForA = ""),
+    (totalDigitForB = ""),
+    (totalDisplayForA = ""),
+    (totalDisplayForB = ""),
+    (numberOfTerms = 0),
+    (operatorsPressed = []),
+    (i = 0));
+}
+
 function displayResult() {
   updateOperator();
   updateLiterals();
@@ -114,6 +124,9 @@ function displayResult() {
       b,
       operatorsPressed[operatorsPressed.length - 1],
     );
+    clearCalculator();
+    console.log(a);
+    console.log(b);
   });
 }
 

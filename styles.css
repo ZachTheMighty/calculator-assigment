@@ -59,13 +59,14 @@ button {
 .content {
   height: 85%;
   display: flex;
+  border-bottom: 2px solid #3b3b3b;
 }
 
 .left-container {
   display: flex;
   flex-flow: column wrap;
   width: 50%;
-  border-right: 1px solid black;
+  border-right: 2px solid #3b3b3b;
   padding: 8px;
 }
 
