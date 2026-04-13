@@ -33,11 +33,11 @@ function createNumbers() {
 }
 
 function add(a, b) {
-  return a + b;
+  return Number((a + b).toFixed(2));
 }
 
 function substract(a, b) {
-  return a - b;
+  return Number((a - b).toFixed(2));
 }
 
 function multiply(a, b) {
@@ -69,7 +69,8 @@ function updateOperator() {
       operatorsPressed.push(op.textContent);
       numberOfTerms++;
 
-      toggleDisableDecimalPoint();
+      decimalPoint.disabled = false;
+      decimalPoint.classList.remove("disabled");
 
       if (numberOfTerms > 1 && a !== null && b !== null && b !== 0) {
         display.textContent = operate(a, b, operatorsPressed[i]);
@@ -87,7 +88,10 @@ function updateLiterals() {
     number.addEventListener("click", () => {
       if (display.textContent === "0") display.textContent = "";
 
-      if (number.textContent === ".") toggleDisableDecimalPoint();
+      if (number.textContent === ".") {
+        decimalPoint.disabled = true;
+        decimalPoint.classList.add("disabled");
+      }
 
       if (operatorsPressed.length === 0) {
         totalDigitForA += number.textContent;
@@ -106,11 +110,6 @@ function updateLiterals() {
   );
 }
 
-function toggleDisableDecimalPoint() {
-  decimalPoint.disabled = !decimalPoint.disabled;
-  decimalPoint.classList.toggle("disabled");
-}
-
 function clearCalculator() {
   ((a = null),
     (b = null),
@@ -121,6 +120,8 @@ function clearCalculator() {
     (numberOfTerms = 0),
     (operatorsPressed = []),
     (i = 0));
+  decimalPoint.disabled = false;
+  decimalPoint.classList.remove("disabled");
 }
 
 function allClear() {
