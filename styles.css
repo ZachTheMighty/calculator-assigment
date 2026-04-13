@@ -36,14 +36,14 @@ button {
   gap: 8px;
   width: 400px;
   height: 500px;
-  border: 1px solid black;
+  border: 2px solid #3b3b3b;
   padding: 12px;
   background-color: #181818;
   border-radius: 10px;
 }
 
 .display {
-  border: 3px solid #3b3b3b;
+  border: 2px solid #3b3b3b;
   padding: 6px;
   font-size: 24px;
   background-color: #00d100;
@@ -52,7 +52,7 @@ button {
 
 .main {
   height: 90%;
-  border: 3px solid #3b3b3b;
+  border: 2px solid #3b3b3b;
   border-radius: 10px;
 }
 

@@ -73,6 +73,9 @@ function updateOperator() {
       if (numberOfTerms > 1 && a !== null && b !== null && b !== 0) {
         display.textContent = operate(a, b, operatorsPressed[i]);
         a = operate(a, b, operatorsPressed[i++]);
+        totalDisplayForB = "";
+        totalDigitForB = "";
+        b = null;
       }
     }),
   );
@@ -83,10 +86,6 @@ function updateLiterals() {
     number.addEventListener("click", () => {
       if (display.textContent === "0") display.textContent = "";
 
-      if (numberOfTerms > 1) {
-        totalDisplayForB = "";
-        totalDigitForB = "";
-      }
       if (operatorsPressed.length === 0) {
         totalDigitForA += number.textContent;
         totalDisplayForA += number.textContent;
@@ -100,9 +99,6 @@ function updateLiterals() {
       }
       if (numberOfTerms === 0) a = +totalDigitForA;
       b = +totalDigitForB;
-      console.log(a);
-      console.log(operatorsPressed[i]);
-      console.log(b);
     }),
   );
 }
@@ -112,7 +108,7 @@ function displayResult() {
   updateLiterals();
 
   equal.addEventListener("click", () => {
-    if (operatorsPressed.length === 0) return;
+    if (operatorsPressed.length === 0 || b === null) return;
     display.textContent = operate(
       a,
       b,
