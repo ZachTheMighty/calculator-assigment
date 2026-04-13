@@ -147,7 +147,6 @@ button {
 .footer {
   display: flex;
   height: 15%;
-  border-top: 1px solid black;
   padding: 8px;
   gap: 8px;
 }
@@ -161,4 +160,9 @@ button {
 
 .hover {
   background-color: bisque;
+}
+
+.disabled {
+  background-color: #2b2525;
+  border: 1px solid white;
 }

@@ -7,6 +7,7 @@ let display = document.querySelector(".display");
 let buttons = document.querySelectorAll("button");
 let equal = document.querySelector(".equal *");
 let clear = document.querySelector(".clear");
+let decimalPoint = document.querySelector(".decimal");
 let a = null,
   b = null,
   totalDigitForA = "",
@@ -68,6 +69,8 @@ function updateOperator() {
       operatorsPressed.push(op.textContent);
       numberOfTerms++;
 
+      toggleDisableDecimalPoint();
+
       if (numberOfTerms > 1 && a !== null && b !== null && b !== 0) {
         display.textContent = operate(a, b, operatorsPressed[i]);
         a = operate(a, b, operatorsPressed[i++]);
@@ -84,6 +87,8 @@ function updateLiterals() {
     number.addEventListener("click", () => {
       if (display.textContent === "0") display.textContent = "";
 
+      if (number.textContent === ".") toggleDisableDecimalPoint();
+
       if (operatorsPressed.length === 0) {
         totalDigitForA += number.textContent;
         totalDisplayForA += number.textContent;
@@ -99,6 +104,11 @@ function updateLiterals() {
       b = +totalDigitForB;
     }),
   );
+}
+
+function toggleDisableDecimalPoint() {
+  decimalPoint.disabled = !decimalPoint.disabled;
+  decimalPoint.classList.toggle("disabled");
 }
 
 function clearCalculator() {
