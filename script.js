@@ -113,10 +113,17 @@ function clearCalculator() {
     (i = 0));
 }
 
+function allClear() {
+  clear.addEventListener("click", () => {
+    clearCalculator();
+    display.textContent = "0";
+  });
+}
+
 function displayResult() {
   updateOperator();
   updateLiterals();
-
+  allClear();
   equal.addEventListener("click", () => {
     if (operatorsPressed.length === 0 || b === null) return;
     display.textContent = operate(
@@ -125,8 +132,6 @@ function displayResult() {
       operatorsPressed[operatorsPressed.length - 1],
     );
     clearCalculator();
-    console.log(a);
-    console.log(b);
   });
 }
 
