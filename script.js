@@ -72,8 +72,6 @@ function updateOperator() {
       operatorsPressed.push(op.textContent);
       numberOfTerms++;
 
-      op.classList.toggle("invert-operator");
-
       decimalPoint.disabled = false;
       decimalPoint.classList.remove("disabled");
 
@@ -111,14 +109,6 @@ function updateLiterals() {
       }
       if (numberOfTerms === 0) a = +totalDigitForA;
       b = +totalDigitForB;
-
-      operators.forEach((op) => {
-        if (
-          op.textContent === operatorsPressed[operatorsPressed.length - 1] &&
-          totalDigitForB.length === 1
-        )
-          op.classList.toggle("invert-operator");
-      });
     }),
   );
 }
@@ -165,6 +155,15 @@ function invertColors() {
     });
     document.addEventListener("mouseup", () => {
       number.classList.remove("invert-number");
+    });
+  });
+
+  operators.forEach((op) => {
+    op.addEventListener("mousedown", () => {
+      op.classList.add("invert-operator");
+    });
+    document.addEventListener("mouseup", () => {
+      op.classList.remove("invert-operator");
     });
   });
 }

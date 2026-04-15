@@ -158,10 +158,6 @@ button {
   color: white;
 }
 
-/*.hover {
-  background-color: bisque;
-} */
-
 .disabled {
   background-color: #2b2525;
   border: 1px solid white;
