@@ -146,25 +146,25 @@ function allClear() {
 
 function invertColors() {
   equal.addEventListener("mousedown", () => {
-    equal.classList.toggle("invert-equal");
+    equal.classList.add("invert-equal");
   });
-  equal.addEventListener("mouseup", () => {
-    equal.classList.toggle("invert-equal");
+  document.addEventListener("mouseup", () => {
+    equal.classList.remove("invert-equal");
   });
 
   clear.addEventListener("mousedown", () => {
-    clear.classList.toggle("invert-clear");
+    clear.classList.add("invert-clear");
   });
-  clear.addEventListener("mouseup", () => {
-    clear.classList.toggle("invert-clear");
+  document.addEventListener("mouseup", () => {
+    clear.classList.remove("invert-clear");
   });
 
   numbers.forEach((number) => {
     number.addEventListener("mousedown", () => {
-      number.classList.toggle("invert-number");
+      number.classList.add("invert-number");
     });
-    number.addEventListener("mouseup", () => {
-      number.classList.toggle("invert-number");
+    document.addEventListener("mouseup", () => {
+      number.classList.remove("invert-number");
     });
   });
 }
@@ -174,6 +174,7 @@ function displayResult() {
   updateLiterals();
   allClear();
   invertColors();
+
   equal.addEventListener("click", () => {
     if (operatorsPressed.length === 0 || b === null) return;
     display.textContent = operate(
