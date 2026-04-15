@@ -2,6 +2,7 @@ let numbersContainer = document.querySelector(".numbers");
 createNumbers();
 
 let operators = document.querySelectorAll(".operator");
+let operatorPressed = false;
 let numbers = document.querySelectorAll(".number");
 let display = document.querySelector(".display");
 let buttons = document.querySelectorAll("button");
@@ -66,8 +67,12 @@ function operate(a, b, operator) {
 function updateOperator() {
   operators.forEach((op) =>
     op.addEventListener("click", () => {
+      if (a === null) return;
+
       operatorsPressed.push(op.textContent);
       numberOfTerms++;
+
+      op.classList.toggle("invert-operator");
 
       decimalPoint.disabled = false;
       decimalPoint.classList.remove("disabled");
@@ -106,6 +111,14 @@ function updateLiterals() {
       }
       if (numberOfTerms === 0) a = +totalDigitForA;
       b = +totalDigitForB;
+
+      operators.forEach((op) => {
+        if (
+          op.textContent === operatorsPressed[operatorsPressed.length - 1] &&
+          totalDigitForB.length === 1
+        )
+          op.classList.toggle("invert-operator");
+      });
     }),
   );
 }
@@ -131,10 +144,36 @@ function allClear() {
   });
 }
 
+function invertColors() {
+  equal.addEventListener("mousedown", () => {
+    equal.classList.toggle("invert-equal");
+  });
+  equal.addEventListener("mouseup", () => {
+    equal.classList.toggle("invert-equal");
+  });
+
+  clear.addEventListener("mousedown", () => {
+    clear.classList.toggle("invert-clear");
+  });
+  clear.addEventListener("mouseup", () => {
+    clear.classList.toggle("invert-clear");
+  });
+
+  numbers.forEach((number) => {
+    number.addEventListener("mousedown", () => {
+      number.classList.toggle("invert-number");
+    });
+    number.addEventListener("mouseup", () => {
+      number.classList.toggle("invert-number");
+    });
+  });
+}
+
 function displayResult() {
   updateOperator();
   updateLiterals();
   allClear();
+  invertColors();
   equal.addEventListener("click", () => {
     if (operatorsPressed.length === 0 || b === null) return;
     display.textContent = operate(

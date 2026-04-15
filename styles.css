@@ -158,11 +158,31 @@ button {
   color: white;
 }
 
-.hover {
+/*.hover {
   background-color: bisque;
-}
+} */
 
 .disabled {
   background-color: #2b2525;
   border: 1px solid white;
+}
+
+.invert-operator {
+  background-color: white;
+  color: #2e2eff;
+}
+
+.invert-equal {
+  background-color: white;
+  color: #00d100;
+}
+
+.invert-clear {
+  background-color: white;
+  color: #ff5d00;
+}
+
+.invert-number {
+  background-color: white;
+  color: gray;
 }
