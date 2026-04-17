@@ -9,6 +9,7 @@ let display = document.querySelector(".display");
 let buttons = document.querySelectorAll("button");
 let equal = document.querySelector(".equal *");
 let clear = document.querySelector(".clear");
+let del = document.querySelector(".del");
 let decimalPoint = document.querySelector(".decimal");
 let a = null,
   b = null,
@@ -114,6 +115,32 @@ function addClickEventsToNumbers() {
   );
 }
 
+function removeLastChar(string) {
+  return string.slice(0, string.length - 1);
+}
+
+function truncate() {
+  if (display.textContent === "0" || (a === null && b === null)) return;
+
+  if (numberOfTerms === 0) {
+    totalDigitForA = removeLastChar(totalDigitForA);
+    totalDisplayForA = removeLastChar(totalDisplayForA);
+    a = +totalDigitForA;
+  }
+
+  if (operatorPressed.length !== 0) {
+    totalDigitForB = removeLastChar(totalDigitForB);
+    totalDisplayForB = removeLastChar(totalDisplayForB);
+    b = +totalDigitForB;
+  }
+
+  display.textContent = removeLastChar(display.textContent);
+}
+
+function backspace() {
+  del.addEventListener("click", () => truncate());
+}
+
 function clearCalculator() {
   ((a = null),
     (b = null),
@@ -148,6 +175,13 @@ function invertColors() {
   });
   document.addEventListener("mouseup", () => {
     clear.classList.remove("invert-clear");
+  });
+
+  del.addEventListener("mousedown", () => {
+    del.classList.add("invert-clear");
+  });
+  document.addEventListener("mouseup", () => {
+    del.classList.remove("invert-clear");
   });
 
   numbers.forEach((number) => {
@@ -240,11 +274,14 @@ function displayResult() {
 function runCalculator() {
   addClickEventsToOperators();
   addClickEventsToNumbers();
+  backspace();
   allClear();
   invertColors();
   keySupport();
 
-  equal.addEventListener("click", () => displayResult());
+  equal.addEventListener("click", () => {
+    displayResult();
+  });
 }
 
 runCalculator();
