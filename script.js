@@ -230,6 +230,11 @@ function keySupport() {
       equal.classList.toggle("invert-equal");
     }
 
+    if (event.key === "Backspace") {
+      truncate();
+      del.classList.toggle("invert-clear");
+    }
+
     if (event.key === "Delete") {
       clearCalculator();
       clear.classList.toggle("invert-clear");
@@ -253,6 +258,10 @@ function keySupport() {
 
     if (event.key === "=" || event.key === "Enter")
       equal.classList.toggle("invert-equal");
+
+    if (event.key === "Backspace") {
+      del.classList.toggle("invert-clear");
+    }
 
     if (event.key === "Delete") {
       clear.classList.toggle("invert-clear");
