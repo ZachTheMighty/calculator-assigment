@@ -134,6 +134,11 @@ function truncate() {
     b = +totalDigitForB;
   }
 
+  if (display.textContent.length === 1) {
+    display.textContent = "0";
+    return;
+  }
+
   display.textContent = removeLastChar(display.textContent);
 }
 
